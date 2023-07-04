@@ -6,7 +6,7 @@ import matplotlib.cm as cm
 import pprint
 from scipy.interpolate import griddata
 
-#雨期・乾期の比抵抗分布データを用いて上空から緩み箇所を評価し，可視化するプログラム
+#雨期・乾期の比抵抗分布データを用いて上空から緩みを評価し，可視化するプログラム
 #乾期高比抵抗かつ比抵抗低下部を抽出,表示，リストに書き出す
 
 #CSVファイルを取り込む(差分)
