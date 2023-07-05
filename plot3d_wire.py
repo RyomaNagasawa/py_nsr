@@ -5,7 +5,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-
+#比抵抗データを3次元空間にプロットし，地形図とともに表示するプログラム．
+#比抵抗データは地表面からの深度ごとで補完したものを散布図で表示する．
+#地形図はDEMデータを取得し，地形等高線とワイヤーフレームにより描画する．
 #wireframe作成{--------------------------------
 Z = np.loadtxt('D:/nagasawa/kanagi/kanagi_ver1.txt')
 #ZZ=string.replace(Z.text, u'e',u'-0.0')
@@ -23,10 +25,8 @@ ax.plot_wireframe(X, Y, Z, rstride=1, cstride=2, linewidth=0.2,color='black')
 #標高10m間隔で等高線を描く
 elevation = range(0,1000,10)
 cont = plt.contour(X, Y, Z, levels=elevation, cmap='binary', linewidths=0.1)
-
 #-------------------------------------}等高線描画
 
-'''
 #全ての平面データplot{---------------------
 #CSVファイルを取り込む
 df = pd.read_csv('d:/nagasawa/plot_3d/csv_3d/uav1_coord/uav1_all.csv')
@@ -55,8 +55,6 @@ mappable = ax.scatter(x, y, z, c=r, cmap=cm,s=30)
 
 fig.colorbar(mappable, ax=ax)
 #----------------------}全ての平面データplot
-'''
-
 
 '''
 #任意の深度の平面データplot{---------------------
@@ -157,8 +155,7 @@ fig.colorbar(mappable1, ax=ax)
 #fig.colorbar(mappable4, ax=ax)
 #----------------------}任意の深度の平面データplot
 '''
-
-
+'''
 #測線ごとの断面データplot{---------------------
 #測線データplot
 #df_l = pd.read_csv('D:/nagasawa/first_sunny/depth_3d/all_1s.csv')
@@ -180,7 +177,7 @@ cm = plt.cm.get_cmap('rainbow')
 mappable = ax.scatter(x_l, y_l, z_l,marker='s', c=r_l, cmap=cm,s=20)
 fig.colorbar(mappable, ax=ax, shrink=0.5, aspect=10, label='resistivity[Ω*m]')
 #----------------------}測線ごとの断面データplot
-
+'''
 '''
 #任意の深度の平面データplot{---------------------
 #CSVファイルを取り込む
@@ -226,8 +223,6 @@ fig.colorbar(mappable1, ax=ax)
 
 plt.xlabel("X[m]")
 plt.ylabel("Y[m]")
-
 ax.set_zlabel('Elevation[m]')
-
 # 表示する
 plt.show()

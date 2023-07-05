@@ -5,10 +5,8 @@ import csv
 import pprint
 from scipy.interpolate import griddata
 
-#dl補正を自動で行う
-
-
-
+#雨期と乾期の比抵抗分布データを，線形補完し水平-鉛直断面図を作成するプログラム
+#2時期のドローンの飛行測線の平面座標を補正し，誤差を小さくしている（DL:測線，auto:自動補正）
 L = input('Which line would you like to culculate? \nA ~ I : ')
 
 #CSVファイルを取り込む(乾期)
@@ -32,7 +30,6 @@ ymin1 = y1.min()
 ymax1 = y1.max()
 zmax1 = z1.max()
 msize = 1
-
 
 #以下繰り返し
 #CSVファイルを取り込む(雨期)
@@ -135,13 +132,10 @@ nz_dif = np.where(nz2_ver1 > nz1_ver1, np.log(nz2_ver1 - nz1_ver1),-np.log(nz1_v
 #補間したメッシュのデータをcsvで書き出す
 #pd.DataFrame(nz_dif).to_csv('D:/nagasawa/dif_2d/p1/%s_dif.csv'%L)
 
-
-
 #作図（見かけ比抵抗差分プロット）
 fig, ax = plt.subplots()
 
-
-#マスキング1
+#マスキング1（データのない部分まで補完されるため，標高が地表面以上・探査深度以下の部分をマスキング）
 df1_7 = df1['dLmin']
 df1_8 = df1['Elev_min']
 df1_9 = df1['Elev_max']
@@ -156,8 +150,7 @@ ax.fill(a1, b1,color="w")
 ax.fill(c1, d1,color="w")
 ax.set_aspect("equal")
 
-
-#マスキング2
+#マスキング2（データのない部分まで補完されるため，標高が地表面以上・探査深度以下の部分をマスキング）
 df2_7 = df2['dLmax']
 df2_8 = df2['Elev_max']
 df2_9 = df2['Elev_min']
@@ -172,7 +165,7 @@ ax.fill(a2, b2,color="w")
 ax.fill(c2, d2,color="w")
 ax.set_aspect("equal")
 
-#マスキング3乾期
+#マスキング3乾期（送電線の影響を受けているデータをマスキング）
 if L=='c':
     MX3=np.array([245,245,278,278])
 elif L=='e':

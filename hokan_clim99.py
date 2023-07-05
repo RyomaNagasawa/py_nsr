@@ -29,7 +29,6 @@ ay = np.arange(ymin,ymax,msize)
 xx, yy = np.meshgrid(ax, ay)
 nz = griddata((x, y), z, (xx, yy))
 
-
 df5 = df['dLmax']
 df6 = df['Elev_max']
 df7 = df['dLmin']

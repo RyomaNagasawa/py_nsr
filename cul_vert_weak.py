@@ -53,7 +53,6 @@ df82 = df['(R2-R1)_80m']
 df83 = df['log10(R2/R1)_80m']
 
 
-
 #Numpy配列へ変換
 X= np.array(dfx)
 Y= np.array(dfy)
@@ -175,7 +174,6 @@ writer.writerow(['X_TM4', 'Y_TM4','NumOfWeakPoints'])
 writer.writerows(table_ver)
 f.close()
 
-
 plt.scatter(X,Y,c=e_all,marker="s",cmap = "Reds")
 plt.colorbar()
 #plt.clim(-966.7,966.7)
@@ -188,7 +186,6 @@ Z = np.loadtxt('D:/nagasawa/kanagi/kanagi_ver1.txt')
 #inputdata_linespace(xmin,xmax,---)(ymax,ymin,---)
 X, Y = np.meshgrid(np.linspace(60876.95,62134.31,Z.shape[1]), np.linspace(52933.37,51566.2,Z.shape[0]))
 #plt.figure(figsize=(26, 20), dpi=80, facecolor='w', edgecolor='k')
-
 
 #等高線描画{-------------------------------------
 #標高10m間隔で等高線を描く
